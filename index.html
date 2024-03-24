@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIR Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5em;
+        }
+        nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1em;
+    position: relative;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+nav a:hover::before,
+nav a:focus::before,
+nav a:active::before {
+    transform: scaleX(1);
+    background-color: white;
+}
+
+
+        .hero {
+            background-image: url('wallpap2.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4em;
+        }
+
+        .cta-button {
+    display: inline-block;
+    padding: 1em 2em;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin-top: 1em;
+    transition: transform 0.1s, box-shadow 0.1s; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.cta-button:hover {
+    background-color: blueviolet; 
+    color: #2c3e50; 
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button:active {
+    transform: scale(0.95); 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+}
+
+
+
+        .intro {
+            text-align: center;
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FIR Website</h1>
+    </header>
+
+    <nav>
+        <a id="how-it-works-link" href="how.html">How It Works</a>
+        <a id="faq-link" href="faq.html">FAQ</a>
+        <a id="contact-link" href="contact.html">Contact</a>
+        <a id="contact-link" href="sections.html">Sections</a>
+    </nav>
+    
+<div class="hero" id="file-fir">
+    <h2>Report an Incident</h2>
+    <p>Help us maintain law and order. File your FIR now!</p>
+    <li><a href="http://localhost/Ganesh/fir.php">
+    <button id="file-fir-btn" class="cta-button">File FIR</button>
+    </a></li>
+</div>
+    <div class="intro" id="how-it-works">
+        <h2>"How can one harness the strength to file a First Information Report, viewing it not merely as a legal process, but as a courageous stride toward justice and accountability? How does taking this action empower individuals to be the voice for truth, shaping a future founded on integrity and fairness?"</h2>
+        <p>"Empower yourself with the strength to seek justice and uphold truth. Filing a First Information Report isn't just a legal step; it's a courageous stride towards ensuring accountability and safeguarding the principles that define a just society. Be the voice that echoes the pursuit of justice, for in your action lies the power to transform the narrative and shape a future built on integrity and fairness."</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 @(unofficial website) FIR Website. All rights reserved by Meghana,Pujitha,Phani,Sathwika.</p>
+    </footer>
+<script>
+document.getElementById('file-fir-btn').addEventListener('click', function () {
+    fetch('/submit_fir', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error('Fetch error:', error.message));
+});
+
+</script>
+
+</body>
+</html>
